@@ -18,7 +18,9 @@
     "url": "https://github.com/guerrique/js-cocktails/issues"
   },
   "homepage": "https://github.com/guerrique/js-cocktails#readme",
-  "dependencies": {},
+  "dependencies": {
+    "axios": "^0.19.2"
+  },
   "devDependencies": {
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
