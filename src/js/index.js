@@ -22,13 +22,18 @@ const controlSearch = async() => {
 
     // prepare the UI
     searchView.clearInput();
+    searchView.clearResults();
 
+    // get results
     try {
 
     await state.search.getResults();
     } catch(error) {
       alert(error);
     }
+
+    // display results on the UI
+    searchView.displayResults(state.search.result);
   }
 };
 
