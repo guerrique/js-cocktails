@@ -43,4 +43,23 @@ export default class Cocktail {
       console.log(error);
     }
   }
+
+  parseIngredients() {
+    const newIngredients = this.ingredients.map(el => {
+        let objIng;
+        let ingredient = el.split(',');
+        let unit = '';
+
+          if (ingredient[1] !== 'undefined') {
+              unit = ingredient[1];
+          }
+          ingredient = ingredient[0];
+          objIng = {
+            unit,
+            ingredient
+          }
+    return objIng;
+    });
+    this.ingredients = newIngredients;
+  }
 }

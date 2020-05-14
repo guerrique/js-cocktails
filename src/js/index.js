@@ -4,6 +4,7 @@
 import Search from './models/Search';
 import Cocktail from './models/Cocktail';
 import * as searchView from './views/searchView';
+import * as cocktailView from './views/cocktailView';
 import { elements } from './views/base';
 
 const state = {};
@@ -47,18 +48,25 @@ const controlCocktail = async () => {
   // get the ID from the url
   const id = window.location.hash.replace('#', '');
   console.log(id);
+
+  // prepare the UI
+  cocktailView.clearCocktail();
+
   // get the recipe from API
   if (id) {
     state.cocktail = new Cocktail(id);
 
     try {
       await state.cocktail.getRecipe();
+      state.cocktail.parseIngredients();
+
+      // display recipe on UI
+      cocktailView.displayCocktail(state.cocktail);
 
     } catch(error) {
       console.log(error);
     }
   }
-  // display recipe on UI
 };
 
 ['load', 'hashchange'].forEach(e => window.addEventListener(e, controlCocktail));
