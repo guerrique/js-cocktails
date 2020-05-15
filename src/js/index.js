@@ -3,6 +3,7 @@
 
 import Search from './models/Search';
 import Cocktail from './models/Cocktail';
+import List from './models/List';
 import * as searchView from './views/searchView';
 import * as cocktailView from './views/cocktailView';
 import { elements } from './views/base';
@@ -70,3 +71,19 @@ const controlCocktail = async () => {
 };
 
 ['load', 'hashchange'].forEach(e => window.addEventListener(e, controlCocktail));
+
+const controlList = () => {
+  // create a new list if there isn't one
+  if (!state.list) state.list = new List();
+
+  // add items to the list
+
+  // display list on the UI
+};
+
+elements.recipe.addEventListener('click', e => {
+  if (e.target.matches('.recipe__btn-add, 。recipe__btn-add *')) {
+    console.log(e);
+    controlList();
+  }
+})
