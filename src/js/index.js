@@ -7,7 +7,7 @@ import List from './models/List';
 import * as searchView from './views/searchView';
 import * as cocktailView from './views/cocktailView';
 import * as listView from './views/listView';
-import { elements } from './views/base';
+import { elements, renderLoader, clearLoader } from './views/base';
 
 const state = {};
 
@@ -27,7 +27,7 @@ const controlSearch = async() => {
     // prepare the UI
     searchView.clearInput();
     searchView.clearResults();
-
+    renderLoader(elements.resultsList);
     // get results
     try {
 
@@ -37,6 +37,7 @@ const controlSearch = async() => {
     }
 
     // display results on the UI
+    clearLoader();
     searchView.displayResults(state.search.result);
   }
 };
@@ -53,6 +54,7 @@ const controlCocktail = async () => {
 
   // prepare the UI
   cocktailView.clearCocktail();
+  renderLoader(elements.recipe);
 
   // get the recipe from API
   if (id) {
@@ -63,6 +65,7 @@ const controlCocktail = async () => {
       state.cocktail.parseIngredients();
 
       // display recipe on UI
+      clearLoader();
       cocktailView.displayCocktail(state.cocktail);
 
     } catch(error) {
