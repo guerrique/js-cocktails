@@ -29,7 +29,10 @@ export default class List {
     } else {
       this.items.push(item);
     }
+  }
 
-
+  deleteItem(id) {
+    const index = this.items.findIndex(el => el.id === id);
+    this.items.splice(index, 1);
   }
 };

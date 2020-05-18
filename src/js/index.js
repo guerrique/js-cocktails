@@ -81,8 +81,8 @@ const controlList = () => {
   if (!state.list) state.list = new List();
 
   // add items to the list
+  listView.deleteList();
   state.cocktail.ingredients.forEach(ing => {
-
     state.list.addItem(ing.ingredient);
   });
 
@@ -97,4 +97,10 @@ elements.recipe.addEventListener('click', e => {
     console.log(e);
     controlList();
   }
+})
+
+elements.shoppingList.addEventListener('click', e => {
+  const id = e.target.closest('.shopping__item').dataset.itemid;
+  state.list.deleteItem(id);
+  listView.deleteItem(id);
 })
