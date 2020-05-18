@@ -77,12 +77,17 @@ const controlList = () => {
   if (!state.list) state.list = new List();
 
   // add items to the list
+  state.cocktail.ingredients.forEach(ing => {
+
+    state.list.addItem(ing.ingredient);
+  });
+
 
   // display list on the UI
 };
 
 elements.recipe.addEventListener('click', e => {
-  if (e.target.matches('.recipe__btn-add, 。recipe__btn-add *')) {
+  if (e.target.matches('.recipe__btn-add, .recipe__btn-add *')) {
     console.log(e);
     controlList();
   }

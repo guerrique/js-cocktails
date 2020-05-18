@@ -5,13 +5,31 @@ export default class List {
     this.items = [];
   }
 
-  addItem(unit, ingredient) {
+  addItem(ingredient) {
     const item = {
       id: uniqid(),
-      unit,
       ingredient
+    };
+
+    const arrayItems = [];
+    let arrItem = [];
+
+    if (this.items.length > 0) {
+
+      this.items.forEach(el => {
+        arrItem = Object.values(el);
+      arrayItems.push(arrItem);
+      });
+
+      // if the ingredient is already on the list, it is not added
+       if (!arrayItems.flat().includes(item.ingredient)) {
+        this.items.push(item);
+       }
+
+    } else {
+      this.items.push(item);
     }
-    this.items.push(item);
-    return item;
+
+
   }
 };
