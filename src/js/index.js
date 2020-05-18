@@ -6,6 +6,7 @@ import Cocktail from './models/Cocktail';
 import List from './models/List';
 import * as searchView from './views/searchView';
 import * as cocktailView from './views/cocktailView';
+import * as listView from './views/listView';
 import { elements, renderLoader, clearLoader } from './views/base';
 
 const state = {};
@@ -85,8 +86,10 @@ const controlList = () => {
     state.list.addItem(ing.ingredient);
   });
 
-
   // display list on the UI
+  state.list.items.forEach(item => {
+    listView.displayListItem(item);
+  })
 };
 
 elements.recipe.addEventListener('click', e => {
