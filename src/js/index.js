@@ -4,6 +4,7 @@
 import Search from './models/Search';
 import Cocktail from './models/Cocktail';
 import List from './models/List';
+import Likes from './models/Likes.js';
 import * as searchView from './views/searchView';
 import * as cocktailView from './views/cocktailView';
 import * as listView from './views/listView';
@@ -96,6 +97,8 @@ elements.recipe.addEventListener('click', e => {
   if (e.target.matches('.recipe__btn-add, .recipe__btn-add *')) {
     console.log(e);
     controlList();
+  } else if (e.target.matches('.recipe__love, .recipe__love *')) {
+    controlLikes();
   }
 })
 
@@ -104,3 +107,13 @@ elements.shoppingList.addEventListener('click', e => {
   state.list.deleteItem(id);
   listView.deleteItem(id);
 })
+
+const controlLikes = () => {
+
+ if (!state.likes) state.likes = new Likes();
+
+ if (!state.likes.isLiked(state.cocktail.id)) {
+
+    const newLike = state.likes.addLike(state.cocktail.id, state.cocktail.title, state.cocktail.image);
+ }
+};

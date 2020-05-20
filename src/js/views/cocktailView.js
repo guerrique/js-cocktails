@@ -22,6 +22,13 @@ export const displayCocktail = (cocktail) => {
           <img src="${cocktail.image}" alt="${cocktail.title}" class="recipe__img">
           <h1 class="recipe__title">
               <span>${cocktail.title}</span>
+          <div>
+              <button class="recipe__love">
+                  <svg class="header__likes">
+                      <use href="img/icons.svg#icon-heart-outlined"></use>
+                  </svg>
+              </button>
+          </div>
           </h1>
       </figure>
       <div class="recipe__ingredients">
