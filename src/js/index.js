@@ -8,6 +8,7 @@ import Likes from './models/Likes.js';
 import * as searchView from './views/searchView';
 import * as cocktailView from './views/cocktailView';
 import * as listView from './views/listView';
+import * as likesView from './views/likesView';
 import { elements, renderLoader, clearLoader } from './views/base';
 
 const state = {};
@@ -112,8 +113,19 @@ const controlLikes = () => {
 
  if (!state.likes) state.likes = new Likes();
 
- if (!state.likes.isLiked(state.cocktail.id)) {
+ const currentID = state.cocktail.id;
 
-    const newLike = state.likes.addLike(state.cocktail.id, state.cocktail.title, state.cocktail.image);
+ if (!state.likes.isLiked(currentID)) {
+
+    const newLike = state.likes.addLike(currentID, state.cocktail.title, state.cocktail.image);
+
+    likesView.toggleLikeIcon(true);
+
+ } else {
+
+    state.likes.deleteLike(currentID);
+
+    likesView.toggleLikeIcon(false);
  }
+
 };
